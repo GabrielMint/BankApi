@@ -7,7 +7,7 @@ namespace BankApi{
         [HttpGet]        
         [Route("health-check")]
         public IActionResult Get(){
-            return Ok("I'm alive!");
+            return Ok("Hello, I'm alive!");
         }
     }
 }
