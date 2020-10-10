@@ -12,7 +12,7 @@ namespace BankApi.Controllers
 
         public AccountQueryController(IAccountReader accountReader)
         {
-            AccountReader = accountReader;
+            AccountReader = accountReader ?? throw new ArgumentNullException(nameof(accountReader));
         }
 
         [HttpGet]
