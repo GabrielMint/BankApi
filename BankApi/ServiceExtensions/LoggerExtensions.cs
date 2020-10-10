@@ -15,7 +15,7 @@ namespace BankApi.ServiceExtensions
                     .Enrich.FromLogContext()
                     .Filter.ByExcluding(Matching.FromSource("Microsoft"))
                     .Filter.ByExcluding(Matching.FromSource("System"))
-                    .WriteTo.Logger(lc => lc.WriteTo.Console())
+                    .Filter.ByExcluding(Matching.FromSource("Serilog"))
                     .WriteTo.Logger(lc => lc
                     .MinimumLevel.Error()
                     .WriteTo.Discord(ulong.Parse("755940966648643711"),
