@@ -1,7 +1,8 @@
-﻿using BankApi.Domain.Entities;
-using BankApi.Infrastructure.DatabaseConnection;
+﻿using BankApi.Infrastructure.DatabaseConnection;
+using BankApi.Infrastructure.DTOs;
 using System;
 using System.Threading.Tasks;
+using Dapper;
 
 namespace BankApi.Infrastructure.Repositories
 {
@@ -14,16 +15,18 @@ namespace BankApi.Infrastructure.Repositories
             DatabaseConnection = databaseConnection ?? throw new System.ArgumentNullException(nameof(databaseConnection));
         }
 
-        public Task<Account> GetAccountByIdAsync(Guid accountId)
+        public async Task<AccountDto> GetAccountByIdAsync(Guid accountId)
         {
-            var account = new Account()
-            {
-                Id = Guid.NewGuid(),
-                Balance = 10000,
-                OwnerId = Guid.NewGuid()
-            };
+            const string query = @"SELECT a.*, p.Name as OwnerName FROM Accounts a
+                                   INNER JOIN Person p
+                                   ON a.OwnerId = p.Id
+                                   WHERE a.Id = @accountId";
 
-            return Task.FromResult(account);
+            using(var connection = DatabaseConnection.GetConnection()){
+                var result = await connection.QueryFirstOrDefaultAsync<AccountDto>(query, new { accountId });
+
+                return result;
+            }
         }
     }
 }

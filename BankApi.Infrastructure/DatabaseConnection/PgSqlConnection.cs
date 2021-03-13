@@ -1,14 +1,14 @@
-﻿using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
+using Npgsql;
 
 namespace BankApi.Infrastructure.DatabaseConnection
 {
-    public class DatabaseConnection : IDatabaseConnection
-    {
+    public class PgSqlConnection : IDatabaseConnection
+    { 
         public string ConnectionString { get; }
 
-        public DatabaseConnection(string connectionString)
+        public PgSqlConnection(string connectionString)
         {
             if (connectionString == null)
                 throw new ArgumentException(nameof(connectionString));
@@ -17,6 +17,6 @@ namespace BankApi.Infrastructure.DatabaseConnection
         }
 
         public IDbConnection GetConnection() =>
-             new SqlConnection(ConnectionString);
+             new NpgsqlConnection(ConnectionString);
     }
 }

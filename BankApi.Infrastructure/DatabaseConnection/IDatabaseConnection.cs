@@ -1,9 +1,10 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 
 namespace BankApi.Infrastructure.DatabaseConnection
 {
     public interface IDatabaseConnection
     {
-        SqlConnection GetConnection();
+        IDbConnection GetConnection();
     }
 }
