@@ -15,7 +15,7 @@ namespace BankApi.Infrastructure.Repositories
             DatabaseConnection = databaseConnection ?? throw new System.ArgumentNullException(nameof(databaseConnection));
         }
 
-        public async Task<AccountDto> GetAccountByIdAsync(Guid accountId)
+        public async Task<AccountModel> GetAccountByIdAsync(Guid accountId)
         {
             const string query = @"SELECT a.*, p.Name as OwnerName FROM Accounts a
                                    INNER JOIN Person p
@@ -23,7 +23,7 @@ namespace BankApi.Infrastructure.Repositories
                                    WHERE a.Id = @accountId";
 
             using(var connection = DatabaseConnection.GetConnection()){
-                var result = await connection.QueryFirstOrDefaultAsync<AccountDto>(query, new { accountId });
+                var result = await connection.QueryFirstOrDefaultAsync<AccountModel>(query, new { accountId });
 
                 return result;
             }

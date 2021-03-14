@@ -2,7 +2,7 @@ using System;
 
 namespace BankApi.Infrastructure.DTOs
 {
-    public class AccountDto
+    public class AccountModel
     {
         public Guid Id { get; set; }
 

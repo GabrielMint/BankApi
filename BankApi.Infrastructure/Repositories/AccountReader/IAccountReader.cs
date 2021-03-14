@@ -7,6 +7,6 @@ namespace BankApi.Infrastructure.Repositories
 {
     public interface IAccountReader
     {
-        Task<AccountDto> GetAccountByIdAsync(Guid accountId);
+        Task<AccountModel> GetAccountByIdAsync(Guid accountId);
     }
 }
