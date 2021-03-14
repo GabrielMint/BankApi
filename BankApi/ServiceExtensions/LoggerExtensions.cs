@@ -18,8 +18,9 @@ namespace BankApi.ServiceExtensions
                     .Filter.ByExcluding(Matching.FromSource("Serilog"))
                     .WriteTo.Logger(lc => lc
                     .MinimumLevel.Error()
-                    .WriteTo.Discord(ulong.Parse("755940966648643711"),
-                    "yCeAk7OKrxTGbeXuYq-rwFy62cP46l-24n0a7FWKHLNLvyf5v8a-XWznunueW4PNckpA"))
+                    .WriteTo.Discord(ulong.Parse("820723101604118569"),
+                    "y_tBop-ZSsSKGFd6l_CUE0_wzU6tYEMBzYq1k9z6-uB_JpdR0ZyjGD2hB0v3jXQULctI"))
+                    //https://discord.com/api/webhooks/820723101604118569/y_tBop-ZSsSKGFd6l_CUE0_wzU6tYEMBzYq1k9z6-uB_JpdR0ZyjGD2hB0v3jXQULctI
                     .CreateLogger();
 
                 return Log.Logger; 

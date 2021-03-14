@@ -1,3 +1,5 @@
+using AutoMapper;
+using BankApi.Profiles;
 using BankApi.ServiceExtensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,6 +27,14 @@ namespace BankApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var mapperConfiguration = new MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile<AccountProfile>();
+            });
+
+            services.AddScoped<IMapper>(x => new Mapper(mapperConfiguration));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
